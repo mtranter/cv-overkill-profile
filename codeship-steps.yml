@@ -1,7 +1,7 @@
 - name: build
   type: serial
   steps:
-    - service: aurelia
-      command: au build
+    - service: gulp
+      command: gulp build
     - service: terraform
-      command: apply
+      command: ./deploy.sh
