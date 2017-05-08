@@ -5,3 +5,4 @@ node_modules
 codeship.aes
 env
 src/ui/dist
+src/ui/jspm_packages
