@@ -10,7 +10,6 @@ class ConfigStub {
       }
     }
   }
-
 }
 
 describe('the Aurelia configuration', () => {
