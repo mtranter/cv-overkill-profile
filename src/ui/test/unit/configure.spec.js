@@ -20,8 +20,8 @@ describe('the Aurelia configuration', () => {
     configure(mockedConfiguration);
   });
 
-  it('should register plugin routes', () => {
-    expect(mockedConfiguration.services['plugin.route']).toBeDefined();
+  it('should register home component routes', () => {
+    expect(mockedConfiguration.services['plugin.widget.homepage.component']).toBeDefined();
   });
 
 });
