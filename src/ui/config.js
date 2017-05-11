@@ -209,6 +209,7 @@ System.config({
     "app-bundle.js": [
       "profile/plugin.js",
       "profile/profile-service.js",
+      "profile/profile.css!github:systemjs/plugin-text@0.0.8.js",
       "profile/profile.html!github:systemjs/plugin-text@0.0.8.js",
       "profile/profile.js"
     ]
