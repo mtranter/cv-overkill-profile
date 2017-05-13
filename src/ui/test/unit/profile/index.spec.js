@@ -2,26 +2,16 @@ import {StageComponent} from 'aurelia-testing';
 import {bootstrap} from 'aurelia-bootstrapper';
 import {Container} from 'aurelia-dependency-injection';
 import {HttpClient} from 'aurelia-fetch-client';
-
-class HttpStub {
-  bio = {name:"", blurb:""};
-  fetch(){
-    let that = this;
-    return Promise.resolve({
-      json: function(){
-        return Promise.resolve(that.bio);
-      }
-    });
-  }
-}
+import aws from './fakes/aws'
 
 describe('IndexComponent', () => {
   let component;
   let viewModel;
-  let svc;
+  let bio;
 
   beforeEach(() => {
-    svc = new HttpStub();
+
+    System.map["AWS"] = ("/base/test/unit/profile/fakes/aws");
 
     component = StageComponent
       .withResources('profile/profile')
@@ -30,13 +20,14 @@ describe('IndexComponent', () => {
       component.bootstrap(aurelia => {
         aurelia.use.standardConfiguration();
 
-        aurelia.container.registerInstance(HttpClient, svc);
       });
   });
 
   it('should render profile', done => {
-    let name = svc.bio.name = 'Mark Tranter';
-    let blurb = svc.bio.blurb = 'Developer';
+    let name = 'Mark Tranter';
+    let blurb = 'Developer';
+    bio = {"Count":1,"Items":[{"Profile":"I like coding","Blurb":blurb,"Name":name}],"ScannedCount":1};
+    aws.DynamoDB.retvals.scan = bio;
     component.manuallyHandleLifecycle().create(bootstrap)
     .then(() => component.bind())
     .then(() => {
@@ -53,6 +44,7 @@ describe('IndexComponent', () => {
       expect(blurbElement.innerHTML).toBe(blurb);
     })
     .then(done)
+    .catch(e => {console.log(e); throw e;});
   });
 
   afterEach(() => {

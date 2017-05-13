@@ -1,6 +1,7 @@
 import {inject} from 'aurelia-framework'
 import {ProfileService} from './profile-service'
 
+
 @inject(ProfileService)
 export class Profile {
   constructor(profileService){
