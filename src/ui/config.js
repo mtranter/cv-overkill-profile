@@ -207,6 +207,8 @@ System.config({
   },
   bundles: {
     "app-bundle.js": [
+      "profile/admin/edit.html!github:systemjs/plugin-text@0.0.8.js",
+      "profile/admin/edit.js",
       "profile/plugin.js",
       "profile/profile-service.js",
       "profile/profile.css!github:systemjs/plugin-text@0.0.8.js",
