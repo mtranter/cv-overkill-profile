@@ -42,7 +42,8 @@ resource "aws_iam_policy" "read_profile_policy" {
                 "dynamodb:Scan",
                 "dynamodb:BatchGetItem"
             ],
-            "Resource": "${aws_dynamodb_table.profile_table.arn}"
+            "Resource": "${aws_dynamodb_table.profile_table.arn}",
+            "Condition": {"StringEqualsIgnoreCase": {"aws:Referer": "http://www.marktranter.com/" }}
         }
     ]
   }
