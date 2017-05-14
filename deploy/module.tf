@@ -24,11 +24,36 @@ module "experience" {
   module_name = "profile"
 }
 
+//Condition for puts
+//cognito-identity.amazonaws.com:sub eu-west-1:29af7465-20f2-41b1-ba97-19392f9503a2
+
+resource "aws_iam_policy" "write_profile_policy" {
+  name        = "ProfileWrite"
+  path        = "/"
+  description = "Can write dynamo profile"
+
+  policy = <<EOF
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "WriteAPIActionsOnProfile",
+            "Effect": "Allow",
+            "Action": [
+                "dynamodb:*"
+            ],
+            "Resource": "${aws_dynamodb_table.profile_table.arn}",
+            "Condition": {"StringEqualsIgnoreCase": {"cognito-identity.amazonaws.com:sub": "eu-west-1:29af7465-20f2-41b1-ba97-19392f9503a2" }}
+        }
+    ]
+  }
+EOF
+}
 
 resource "aws_iam_policy" "read_profile_policy" {
-  name        = "test_policy"
+  name        = "ProfileRead"
   path        = "/"
-  description = "My test policy"
+  description = "Can read dynamo profile"
 
   policy = <<EOF
 {
@@ -58,6 +83,11 @@ resource "aws_iam_role_policy_attachment" "auth_dynamo_attach" {
 resource "aws_iam_role_policy_attachment" "unauth_dynamo_attach" {
     role       = "cv_overkill_unauth_role"
     policy_arn = "${aws_iam_policy.read_profile_policy.arn}"
+}
+
+resource "aws_iam_role_policy_attachment" "write_dynamo_attach" {
+    role       = "cv_overkill_auth_role"
+    policy_arn = "${aws_iam_policy.write_profile_policy.arn}"
 }
 
 
