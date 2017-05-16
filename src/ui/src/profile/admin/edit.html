@@ -1,6 +1,6 @@
 <template>
   Edit Profile
-  <form submit.bind="save(profile)">
+  <form submit.delegate="save(profile)">
   <div class="form-group">
     <label for="exampleInputEmail1">Name</label>
     <input value.bind="profile.name"  type="text" class="form-control" id="exampleInputEmail1" placeholder="Name">
