@@ -42,8 +42,7 @@ resource "aws_iam_policy" "write_profile_policy" {
             "Action": [
                 "dynamodb:*"
             ],
-            "Resource": "${aws_dynamodb_table.profile_table.arn}",
-            "Condition": {"StringEqualsIgnoreCase": {"cognito-identity.amazonaws.com:sub": "eu-west-1:29af7465-20f2-41b1-ba97-19392f9503a2" }}
+            "Resource": "${aws_dynamodb_table.profile_table.arn}"
         }
     ]
   }
@@ -86,7 +85,7 @@ resource "aws_iam_role_policy_attachment" "unauth_dynamo_attach" {
 }
 
 resource "aws_iam_role_policy_attachment" "write_dynamo_attach" {
-    role       = "cv_overkill_auth_role"
+    role       = "cv_overkill_admin_role"
     policy_arn = "${aws_iam_policy.write_profile_policy.arn}"
 }
 
