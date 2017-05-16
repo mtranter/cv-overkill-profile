@@ -1,3 +1,14 @@
 <template>
   Edit Profile
+  <form submit.bind="save(profile)">
+  <div class="form-group">
+    <label for="exampleInputEmail1">Name</label>
+    <input value.bind="profile.name"  type="text" class="form-control" id="exampleInputEmail1" placeholder="Name">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Password</label>
+    <textarea value.bind="profile.blurb" class="form-control" id="exampleInputPassword1" placeholder="Password"></textarea
+  </div>
+  <button type="submit" class="btn btn-default">Submit</button>
+</form>
 </template>
