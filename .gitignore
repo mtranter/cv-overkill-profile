@@ -7,3 +7,4 @@ env
 src/ui/dist
 src/ui/jspm_packages
 tf-deploy-plan
+tf-plan-deploy
