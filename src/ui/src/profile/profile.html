@@ -1,19 +1,27 @@
 <template>
         <require from="./profile.css"></require>
+
+        <div id="headerwrap">
+          <div class="container">
+            <br>
+            <div class="row">
+              <h1>${profile.Name}</h1>
+              <br>
+              <h3>${profile.Blurb}</h3>
+              <br>
+              <br>
+              <div class="col-lg-6 col-lg-offset-3">
+              </div>
+            </div>
+          </div><!-- /container -->
+        </div><!-- /headerwrap -->
       	<!-- ========== HEADER SECTION ========== -->
       	<section id="profile" name="profile"></section>
-      	<div id="headerwrap">
-      		<div class="container">
-      			<br>
-      			<div class="row">
-      				<h1>${profile.Name}</h1>
-      				<br>
-      				<h3>${profile.Blurb}</h3>
-      				<br>
-      				<br>
-      				<div class="col-lg-6 col-lg-offset-3">
-      				</div>
-      			</div>
-      		</div><!-- /container -->
-      	</div><!-- /headerwrap -->
+        <div class="container">
+          <br>
+          <div class="row">
+            <h1>Profile</h1>
+            ${profile.Profile}
+          </div>
+        </div>
 </template>
