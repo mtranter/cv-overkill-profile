@@ -18,7 +18,7 @@ provider "aws" {
 
 module "experience" {
   source = "github.com/mtranter/cv-overkill-terraform?ref=v1.4//modules/tf-cv-overkill-aurelia-module"
-  website_files = ["app-bundle.js", "assets/MeBolivia_Trunc.jpg"]
+  website_files = ["app-bundle.js", "assets/header.jpg"]
   relative_source_path = "/../src/ui/dist/"
   region = "${var.region}"
   module_name = "profile"
